@@ -15,6 +15,10 @@ public class QBoardRepository {
 
     public List<Board> findAll() {
         QBoard board = QBoard.board;
-        return jpaQueryFactory.selectFrom(board).fetch();
+        return jpaQueryFactory
+                .selectFrom(board)
+                .orderBy(board.id.desc())
+                .where(board.title.contains("딸기"))
+                .fetch();
     }
 }
